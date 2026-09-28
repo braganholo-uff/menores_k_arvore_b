@@ -48,7 +48,7 @@ TNo *cria(int d) {
     novo->m = 0;
     novo->pai = NULL;
     novo->s = (int *) malloc(sizeof(int *) * (d * 2));
-    novo->p = (TNo **) malloc(sizeof(TNo *) * (d * 2) + 1);
+    novo->p = (TNo **) malloc(sizeof(TNo *) * (d * 2 + 1));
     for (int i = 0; i < (d * 2 + 1); i++) {
         novo->p[i] = NULL;
     }
@@ -57,7 +57,7 @@ TNo *cria(int d) {
 
 TNo *libera(TNo *a, int d) {
     if (a != NULL) {
-        for (int i = 0; i <= d * 2 + 1; i++) {
+        for (int i = 0; i <= a->m; i++) { // um nó tem m+1 filhos válidos (índices 0..m)
             libera(a->p[i], d);
         }
         free(a->s);
